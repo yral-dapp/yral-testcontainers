@@ -1,0 +1,11 @@
+[package]
+name = "yral-testcontainers"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+testcontainers = "0.20.0"
+
+[build-dependencies]
+anyhow = "1.0.86"
+gix = { version = "0.63.0", default-features = false, features = ["index"] }

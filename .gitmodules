@@ -1,0 +1,6 @@
+[submodule "yral-metadata"]
+	path = yral-metadata
+	url = https://github.com/go-bazzinga/yral-metadata.git
+[submodule "hot-or-not-backend-canister"]
+	path = hot-or-not-backend-canister
+	url = https://github.com/go-bazzinga/hot-or-not-backend-canister.git
