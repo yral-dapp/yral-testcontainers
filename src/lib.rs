@@ -53,7 +53,7 @@ pub mod backend {
         }
 
         fn ready_conditions(&self) -> Vec<WaitFor> {
-            vec![WaitFor::message_on_stdout("Initialized replica.")]
+            vec![WaitFor::millis(1500)]
         }
 
         fn expose_ports(&self) -> &[ContainerPort] {
