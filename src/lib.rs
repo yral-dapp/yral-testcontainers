@@ -33,14 +33,17 @@ pub mod metadata {
 
 pub mod backend {
     use testcontainers::{
-        core::{ContainerPort, WaitFor},
+        core::{wait::HttpWaitStrategy, ContainerPort, WaitFor},
         Image,
     };
 
     include!(concat!(env!("OUT_DIR"), "/meta/yral_backend.rs"));
 
     pub const AGENT_PORT: ContainerPort = ContainerPort::Tcp(4943);
-    pub const ADMIN_SECP_BYTES: [u8; 32] = [9, 64, 7, 55, 201, 208, 139, 219, 167, 201, 176, 6, 31, 109, 44, 248, 27, 241, 239, 56, 98, 100, 158, 36, 79, 233, 172, 151, 228, 187, 8, 224];
+    pub const ADMIN_SECP_BYTES: [u8; 32] = [
+        9, 64, 7, 55, 201, 208, 139, 219, 167, 201, 176, 6, 31, 109, 44, 248, 27, 241, 239, 56, 98,
+        100, 158, 36, 79, 233, 172, 151, 228, 187, 8, 224,
+    ];
 
     pub struct YralBackend;
 
@@ -54,7 +57,10 @@ pub mod backend {
         }
 
         fn ready_conditions(&self) -> Vec<WaitFor> {
-            vec![WaitFor::millis(1500)]
+            let wait_condition =
+                HttpWaitStrategy::new("/api/v2/status").with_expected_status_code(200u16);
+
+            vec![WaitFor::millis(1500), WaitFor::http(wait_condition)]
         }
 
         fn expose_ports(&self) -> &[ContainerPort] {

@@ -60,7 +60,10 @@ const TAG: &str = "{id}";
     Ok(())
 }
 
-const ADMIN_SECP_BYTES: [u8; 32] = [9, 64, 7, 55, 201, 208, 139, 219, 167, 201, 176, 6, 31, 109, 44, 248, 27, 241, 239, 56, 98, 100, 158, 36, 79, 233, 172, 151, 228, 187, 8, 224];
+const ADMIN_SECP_BYTES: [u8; 32] = [
+    9, 64, 7, 55, 201, 208, 139, 219, 167, 201, 176, 6, 31, 109, 44, 248, 27, 241, 239, 56, 98,
+    100, 158, 36, 79, 233, 172, 151, 228, 187, 8, 224,
+];
 fn build_yral_backend(cwd: &str, meta_dir: &Path) -> Result<()> {
     let repo = gix::open(format!("{cwd}/hot-or-not-backend-canister"))?;
     let id = repo.head_id()?.to_hex().to_string();
@@ -82,7 +85,10 @@ const TAG: &str = "{id}";
     }
 
     let admin_key = SecretKey::from_bytes(&ADMIN_SECP_BYTES.into()).unwrap();
-    let admin_pem = admin_key.to_sec1_pem(Default::default()).unwrap().to_string();
+    let admin_pem = admin_key
+        .to_sec1_pem(Default::default())
+        .unwrap()
+        .to_string();
 
     let output = Command::new("docker")
         .arg("build")
