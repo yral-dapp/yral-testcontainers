@@ -9,3 +9,4 @@ testcontainers = "0.20.0"
 [build-dependencies]
 anyhow = "1.0.86"
 gix = { version = "0.63.0", default-features = false, features = ["index"] }
+k256 = { version = "0.13.3", features = ["pem"] }

@@ -40,6 +40,7 @@ pub mod backend {
     include!(concat!(env!("OUT_DIR"), "/meta/yral_backend.rs"));
 
     pub const AGENT_PORT: ContainerPort = ContainerPort::Tcp(4943);
+    pub const ADMIN_SECP_BYTES: [u8; 32] = [9, 64, 7, 55, 201, 208, 139, 219, 167, 201, 176, 6, 31, 109, 44, 248, 27, 241, 239, 56, 98, 100, 158, 36, 79, 233, 172, 151, 228, 187, 8, 224];
 
     pub struct YralBackend;
 
