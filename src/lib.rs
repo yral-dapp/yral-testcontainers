@@ -4,8 +4,6 @@ pub mod metadata {
         Image,
     };
 
-    include!(concat!(env!("OUT_DIR"), "/meta/yral_metadata.rs"));
-
     pub const REST_PORT: ContainerPort = ContainerPort::Tcp(8001);
     pub const GRPC_PORT_TCP: ContainerPort = ContainerPort::Udp(8000);
     pub const GRPC_PORT_UDP: ContainerPort = ContainerPort::Udp(8000);
@@ -14,11 +12,11 @@ pub mod metadata {
 
     impl Image for YralMetadata {
         fn name(&self) -> &str {
-            NAME
+            "ghcr.io/go-bazzinga/yral-metadata-dev"
         }
 
         fn tag(&self) -> &str {
-            TAG
+            "a4879e2e711c17beeb12ed6987ba315c110be9e5"
         }
 
         fn ready_conditions(&self) -> Vec<WaitFor> {
@@ -37,8 +35,6 @@ pub mod backend {
         Image,
     };
 
-    include!(concat!(env!("OUT_DIR"), "/meta/yral_backend.rs"));
-
     pub const AGENT_PORT: ContainerPort = ContainerPort::Tcp(4943);
     pub const ADMIN_SECP_BYTES: [u8; 32] = [
         9, 64, 7, 55, 201, 208, 139, 219, 167, 201, 176, 6, 31, 109, 44, 248, 27, 241, 239, 56, 98,
@@ -49,11 +45,11 @@ pub mod backend {
 
     impl Image for YralBackend {
         fn name(&self) -> &str {
-            NAME
+            "ghcr.io/go-bazzinga/yral-backend-dev"
         }
 
         fn tag(&self) -> &str {
-            TAG
+            "76bfd0fa78e4f862a4b30601f4ff3143aa974ee7"
         }
 
         fn ready_conditions(&self) -> Vec<WaitFor> {
