@@ -8,7 +8,15 @@ pub mod metadata {
     pub const GRPC_PORT_TCP: ContainerPort = ContainerPort::Udp(8000);
     pub const GRPC_PORT_UDP: ContainerPort = ContainerPort::Udp(8000);
 
-    pub struct YralMetadata;
+    pub struct YralMetadata {
+        tag: String,
+    }
+
+    impl YralMetadata {
+        pub fn new(tag: String) -> Self {
+            Self { tag }
+        }
+    }
 
     impl Image for YralMetadata {
         fn name(&self) -> &str {
@@ -16,7 +24,7 @@ pub mod metadata {
         }
 
         fn tag(&self) -> &str {
-            "a4879e2e711c17beeb12ed6987ba315c110be9e5"
+            &self.tag
         }
 
         fn ready_conditions(&self) -> Vec<WaitFor> {
@@ -41,7 +49,15 @@ pub mod backend {
         100, 158, 36, 79, 233, 172, 151, 228, 187, 8, 224,
     ];
 
-    pub struct YralBackend;
+    pub struct YralBackend {
+        tag: String,
+    }
+
+    impl YralBackend {
+        pub fn new(tag: String) -> Self {
+            Self { tag }
+        }
+    }
 
     impl Image for YralBackend {
         fn name(&self) -> &str {
@@ -49,7 +65,7 @@ pub mod backend {
         }
 
         fn tag(&self) -> &str {
-            "76bfd0fa78e4f862a4b30601f4ff3143aa974ee7"
+            &self.tag
         }
 
         fn ready_conditions(&self) -> Vec<WaitFor> {
