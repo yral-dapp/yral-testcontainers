@@ -20,7 +20,7 @@ pub mod metadata {
 
     impl Image for YralMetadata {
         fn name(&self) -> &str {
-            "ghcr.io/go-bazzinga/yral-metadata-dev"
+            "ghcr.io/yral-dapp/yral-metadata-dev"
         }
 
         fn tag(&self) -> &str {
@@ -61,7 +61,7 @@ pub mod backend {
 
     impl Image for YralBackend {
         fn name(&self) -> &str {
-            "ghcr.io/go-bazzinga/yral-backend-dev"
+            "ghcr.io/yral-dapp/yral-backend-dev"
         }
 
         fn tag(&self) -> &str {
